@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="paths">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="path" minOccurs="1" maxOccurs="10">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="currentTravelTime" type="xs:unsignedByte" />
+							<xs:element name="typicalTravelTime" type="xs:unsignedByte" />
+							<xs:element name="miles" type="xs:decimal" />
+							<xs:element name="segments">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element minOccurs="1" maxOccurs="unbounded" name="segment">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="road" type="xs:string" />
+													<xs:element name="minSpeed" type="xs:string" />
+													<xs:element name="maxSpeed" type="xs:string" />
+													<xs:element name="avgSpeed" type="xs:string" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="incidents">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element minOccurs="0" maxOccurs="unbounded" name="incident" type="xs:string" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
