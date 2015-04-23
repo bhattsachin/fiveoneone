@@ -19,7 +19,7 @@ public class WebClient {
     public final static void main(String[] args) throws Exception {
         CloseableHttpClient httpclient = HttpClients.createDefault();
         try {
-            HttpGet httpget = new HttpGet("http://localhost/");
+            HttpGet httpget = new HttpGet("http://www.google.com/");
 
             System.out.println("Executing request " + httpget.getRequestLine());
 

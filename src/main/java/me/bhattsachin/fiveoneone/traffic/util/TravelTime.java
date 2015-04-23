@@ -25,7 +25,7 @@ public class TravelTime {
 
 	public static void main(String[] args) throws JsonParseException, JsonMappingException, IOException, JAXBException {
 		XmlMapper mapper = new XmlMapper();
-		String content = new String(Files.readAllBytes(Paths.get("/Users/sachinbhatt/dev/softwares/jaxb-ri/511/getdestinationlist.aspx.xml")));
+		String content = new String(Files.readAllBytes(Paths.get("/home/bhatt/git/fiveoneone/resources/getdestinationlist.aspx.xml")));
 		
 		
 		final JAXBContext context = JAXBContext.newInstance(Destinations.class);
@@ -36,7 +36,7 @@ public class TravelTime {
 
 		StringWriter writer = new StringWriter();
 
-		Destinations origins = (Destinations)unmarshaller.unmarshal(new File("/Users/sachinbhatt/dev/softwares/jaxb-ri/511/getdestinationlist.aspx.xml"));
+		Destinations origins = (Destinations)unmarshaller.unmarshal(new File("/home/bhatt/git/fiveoneone/resources/getdestinationlist.aspx.xml"));
 
 		//Destinations origins = mapper.readValue(content, Destinations.class);
 		

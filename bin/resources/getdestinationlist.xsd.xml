@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="destinations">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="unbounded" name="destination">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="city" type="xs:string" />
+							<xs:element name="mainRoad" type="xs:string" />
+							<xs:element name="crossRoad" type="xs:string" />
+							<xs:element name="node" type="xs:unsignedShort" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="originNode" type="xs:unsignedShort" use="required" />
+			<xs:attribute name="timestamp" type="xs:dateTime" use="required" />
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
