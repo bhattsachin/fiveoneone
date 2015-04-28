@@ -10,6 +10,7 @@ package me.bhattsachin.fiveoneone.traffic.model.origin;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -55,13 +56,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "destination"
+    "origin"
 })
 @XmlRootElement(name = "origins")
-public class Origins {
+public class Origins{
 
     @XmlElement(required = true)
-    protected List<Origins.Destination> destination;
+    protected List<Origins.Origin> origin;
     @XmlAttribute(name = "cachestamp", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar cachestamp;
@@ -84,15 +85,15 @@ public class Origins {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Origins.Destination }
+     * {@link Origins.Origin }
      * 
      * 
      */
-    public List<Origins.Destination> getDestination() {
-        if (destination == null) {
-            destination = new ArrayList<Origins.Destination>();
+    public List<Origins.Origin> getDestination() {
+        if (origin == null) {
+            origin = new ArrayList<Origins.Origin>();
         }
-        return this.destination;
+        return this.origin;
     }
 
     /**
@@ -143,13 +144,13 @@ public class Origins {
      * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
+    @XmlType(name = "origin", propOrder = {
         "city",
         "mainRoad",
         "crossRoad",
         "node"
     })
-    public static class Destination {
+    public static class Origin {
 
         @XmlElement(required = true)
         protected String city;
@@ -159,8 +160,17 @@ public class Origins {
         protected String crossRoad;
         @XmlSchemaType(name = "unsignedShort")
         protected int node;
+        
+        
+        
 
-        /**
+        @Override
+		public String toString() {
+			return "Origin [city=" + city + ", mainRoad=" + mainRoad
+					+ ", crossRoad=" + crossRoad + ", node=" + node + "]";
+		}
+
+		/**
          * Gets the value of the city property.
          * 
          * @return

@@ -45,11 +45,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Origins.Destination }
+     * Create an instance of {@link Origins.Origin }
      * 
      */
-    public Origins.Destination createOriginsDestination() {
-        return new Origins.Destination();
+    public Origins.Origin createOriginsDestination() {
+        return new Origins.Origin();
     }
 
 }

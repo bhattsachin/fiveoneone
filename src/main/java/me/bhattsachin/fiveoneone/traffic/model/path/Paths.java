@@ -11,6 +11,7 @@ package me.bhattsachin.fiveoneone.traffic.model.path;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -201,8 +202,22 @@ public class Paths {
         protected Paths.Path.Segments segments;
         @XmlElement(required = true)
         protected Paths.Path.Incidents incidents;
+        
+        
 
-        /**
+        @Override
+		public String toString() {
+			return "Path [currentTravelTime=" + currentTravelTime
+					+ ", typicalTravelTime=" + typicalTravelTime + ", miles="
+					+ miles + ", segments=" + segments.toString() + ", incidents="
+					+ incidents.toString() + "]";
+		}
+        
+        public String compressedVal(){
+        	return currentTravelTime + "|" + typicalTravelTime + "|" + miles;
+        }
+
+		/**
          * Gets the value of the currentTravelTime property.
          * 
          */
@@ -334,7 +349,11 @@ public class Paths {
 
             protected List<String> incident;
 
-            /**
+            public void setIncident(List<String> incident) {
+				this.incident = incident;
+			}
+
+			/**
              * Gets the value of the incident property.
              * 
              * <p>
@@ -404,7 +423,13 @@ public class Paths {
         })
         public static class Segments {
 
-            @XmlElement(required = true)
+            @Override
+			public String toString() {
+				return "Segments [segment=" + segment + "]";
+			}
+
+
+			@XmlElement(required = true)
             protected List<Paths.Path.Segments.Segment> segment;
 
             /**
@@ -429,7 +454,7 @@ public class Paths {
              * 
              * 
              */
-            public List<Paths.Path.Segments.Segment> getSegment() {
+            public List<Paths.Path.Segments.Segment> getSegment() { 
                 if (segment == null) {
                     segment = new ArrayList<Paths.Path.Segments.Segment>();
                 }
@@ -468,7 +493,8 @@ public class Paths {
             })
             public static class Segment {
 
-                @XmlElement(required = true)
+                public static final String TILDA = "~";
+				@XmlElement(required = true)
                 protected String road;
                 @XmlElement(required = true)
                 protected String minSpeed;
@@ -477,7 +503,18 @@ public class Paths {
                 @XmlElement(required = true)
                 protected String avgSpeed;
 
-                /**
+                @Override
+				public String toString() {
+					return "Segment [road=" + road + ", minSpeed=" + minSpeed
+							+ ", maxSpeed=" + maxSpeed + ", avgSpeed="
+							+ avgSpeed + "]";
+				}
+                
+                public String compressedVal(){
+                	return road + TILDA + minSpeed + TILDA + maxSpeed + TILDA + avgSpeed;
+                }
+
+				/**
                  * Gets the value of the road property.
                  * 
                  * @return
