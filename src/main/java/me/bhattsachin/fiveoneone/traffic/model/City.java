@@ -1,9 +1,15 @@
 package me.bhattsachin.fiveoneone.traffic.model;
 
+import java.util.Set;
+
 public class City{
 	String city;
 	Integer jobs;
-	String node;
+	
+	/**
+	 * 5th May, one city can have multiple nodes
+	 */
+	Set<String> node;
 	
 	public City(String city, Integer jobs) {
 		super();
@@ -25,11 +31,13 @@ public class City{
 		this.jobs = jobs;
 	}
 
-	public String getNode() {
+	
+
+	public Set<String> getNode() {
 		return node;
 	}
 
-	public void setNode(String node) {
+	public void setNode(Set<String> node) {
 		this.node = node;
 	}
 

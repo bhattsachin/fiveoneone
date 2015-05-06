@@ -76,17 +76,16 @@ public class WebClient {
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 		Paths response=null;
 	        try {
-	            HttpGet httpget = new HttpGet("http://services.my511.org/traffic/getpathlist.aspx?token=33f74986-ede3-4e51-9755-05eb1486e4f7&o=" + origin + "&d=" + destination);
+	        	String url = "http://services.my511.org/traffic/getpathlist.aspx?token=33f74986-ede3-4e51-9755-05eb1486e4f7&o=" + origin + "&d=" + destination;
+	        	//System.out.println(url);
+	            HttpGet httpget = new HttpGet(url);
 	           
 	           response = httpclient.execute(httpget, new WebResponseHandler<Paths>(Paths.class)); 
-	            System.out.println("----------------------------------------");
+	            //System.out.println("----------------------------------------");
 	           if(response!=null){
 	        	   
-	        	   for(Paths.Path path : response.getPath()){
-	        		   System.out.println(path);
-	        		   
-	        	   }
-	        	   System.out.println("total of : " + response.getPath().size());
+	        	  
+	        	   //System.out.println("total of : " + response.getPath().size());
 	           }
 	        } finally {
 	            httpclient.close();

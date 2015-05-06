@@ -124,9 +124,19 @@ public class Paths {
         }
         return this.path;
     }
+    
+    
 
 
-    /**
+    @Override
+	public String toString() {
+		return "Paths [path=" + path + "]";
+	}
+
+
+
+
+	/**
      * <p>Java class for anonymous complex type.
      * 
      * <p>The following schema fragment specifies the expected content contained within this class.
@@ -214,7 +224,14 @@ public class Paths {
 		}
         
         public String compressedVal(){
-        	return currentTravelTime + "|" + typicalTravelTime + "|" + miles;
+        	StringBuilder sb = new StringBuilder(currentTravelTime + "|" + typicalTravelTime + "|" + miles);
+        	boolean first = true;
+        	for(Segments.Segment segment : this.segments.segment){
+        		sb.append("|");
+        		sb.append(segment.compressedVal());
+        		break;
+        	}
+        	return sb.toString();
         }
 
 		/**
