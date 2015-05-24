@@ -1,0 +1,54 @@
+San Francisco,222
+San Francisco,216
+San Francisco,214
+San Francisco,317
+San Francisco,36
+San Francisco,217
+San Francisco,1225
+San Francisco,42
+San Francisco,1221
+San Francisco,1521
+San Francisco,1053
+San Francisco,70
+San Francisco,1177
+San Francisco,780
+San Jose,812
+San Jose,79
+San Jose,782
+San Jose,115
+San Jose,1124
+San Jose,634
+San Jose,347
+San Jose,38
+San Jose,460
+San Jose,288
+San Jose,558
+San Jose,591
+San Jose,255
+Palo Alto,294
+Santa Clara,366
+Santa Clara,301
+Santa Clara,2096
+Mountain View,278
+Mountain View,35
+Sunnyvale,276
+Sunnyvale,749
+Sunnyvale,382
+Redwood City,206
+San Mateo,279
+San Mateo,799
+Menlo Park,763
+Menlo Park,1061
+San Bruno,332
+Fremont,736
+Fremont,1147
+Fremont,1284
+Fremont,44
+Fremont,1285
+Fremont,759
+Milpitas,252
+Milpitas,653
+Milpitas,412
+Milpitas,411
+Foster City,807
+Foster City,797

@@ -1,6 +1,7 @@
 package me.bhattsachin.fiveoneone.traffic.client;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,13 +10,16 @@ import me.bhattsachin.fiveoneone.traffic.model.City;
 import me.bhattsachin.fiveoneone.traffic.model.TravelTime;
 import me.bhattsachin.fiveoneone.traffic.model.origin.Origins;
 import me.bhattsachin.fiveoneone.traffic.model.path.Paths;
-import me.bhattsachin.fiveoneone.traffic.util.CitiesOfInterest;
 import me.bhattsachin.fiveoneone.traffic.util.CityNodeUtil;
+import me.bhattsachin.fiveoneone.traffic.util.DeadNodeUtil;
 import me.bhattsachin.fiveoneone.traffic.util.JobCityUtil;
+import me.bhattsachin.fiveoneone.traffic.util.TrafficFileWriter;
 
 import org.apache.http.client.ClientProtocolException;
 
 public class ExecutionPoint extends WebClient {
+	
+	static SimpleDateFormat folderFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
 
 	public static void main(String[] args) throws ClientProtocolException,
 			IOException {
@@ -29,6 +33,10 @@ public class ExecutionPoint extends WebClient {
 
 
 	private static void execute() throws ClientProtocolException, IOException {
+		long seed = System.currentTimeMillis();
+		Date date = new Date(System.currentTimeMillis());
+		String timeStamp = folderFormat.format(date);
+		TrafficFileWriter.TIMESTAMP = timeStamp + "/";
 		ExecutionPoint thread = new ExecutionPoint();
 
 		/**
@@ -57,6 +65,7 @@ public class ExecutionPoint extends WebClient {
 		for (Origins.Origin origin : origins.getDestination()) {
 			CityNodeUtil
 					.add(String.valueOf(origin.getNode()), origin.getCity());
+			
 		}
 	}
 
@@ -92,7 +101,14 @@ public class ExecutionPoint extends WebClient {
 						if (homecode.equals(jobCityNode)) {
 							continue;
 						}
-
+						
+						/**
+						 * if the node is dead don't go through
+						 */
+						if(DeadNodeUtil.isDead(homecode, jobCityNode)){
+							continue;
+						}
+						
 						Thread.sleep((long) (50 + Math.random() * 20));
 
 						paths = fetchPath(homecode, jobCityNode);
@@ -103,12 +119,14 @@ public class ExecutionPoint extends WebClient {
 							
 							traveltime = new TravelTime(homecode, jobCityNode, paths, new Date());
 
-							System.out.println(traveltime.compressedValue());
+							//System.out.println(traveltime.compressedValue());
+							TrafficFileWriter.append(TrafficFileWriter.FILE_TYPES.PATH.name(), traveltime.compressedValue());
 						} else {
+							TrafficFileWriter.append(TrafficFileWriter.FILE_TYPES.NO_PATH.name(), homecode + "," + jobCityNode + "," + homeCity + "," + city.getCity());
 							System.out.println(CityNodeUtil.getCity(homecode)
 									+ "->" + city.getCity() + " no path found"
 									+ paths);
-							System.out.println(homecode + "," + jobCityNode);
+							//System.out.println(homecode + "," + jobCityNode);
 							continue;
 						}
 						
@@ -122,6 +140,7 @@ public class ExecutionPoint extends WebClient {
 					} catch (Exception ex) {
 						// ex.printStackTrace();
 						// we also black list them here
+						TrafficFileWriter.append(TrafficFileWriter.FILE_TYPES.EXCEPTION.name(), homecode + "," + jobCityNode + "," + homeCity + "," + city.getCity());
 						ex.printStackTrace();
 					}
 
@@ -145,6 +164,10 @@ public class ExecutionPoint extends WebClient {
 		for (City city : JobCityUtil.getCities()) {
 			node = CityNodeUtil.getNode(city.getCity());
 			city.setNode(node);
+			for(String nd : node){
+				TrafficFileWriter.append(TrafficFileWriter.FILE_TYPES.JOBS.name(), city.getCity() + "," + nd);
+			}
+		
 		}
 	}
 

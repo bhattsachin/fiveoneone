@@ -1,0 +1,70 @@
+2008,206,Tracy,Redwood City
+2008,279,Tracy,San Mateo
+2008,799,Tracy,San Mateo
+2008,332,Tracy,San Bruno
+2008,807,Tracy,Foster City
+2008,797,Tracy,Foster City
+1411,807,Oakland,Foster City
+807,222,Foster City,San Francisco
+807,216,Foster City,San Francisco
+807,214,Foster City,San Francisco
+807,317,Foster City,San Francisco
+807,36,Foster City,San Francisco
+807,217,Foster City,San Francisco
+807,1225,Foster City,San Francisco
+807,42,Foster City,San Francisco
+807,1221,Foster City,San Francisco
+807,1521,Foster City,San Francisco
+807,1053,Foster City,San Francisco
+807,70,Foster City,San Francisco
+807,1177,Foster City,San Francisco
+807,780,Foster City,San Francisco
+807,812,Foster City,San Jose
+807,79,Foster City,San Jose
+807,782,Foster City,San Jose
+807,115,Foster City,San Jose
+807,1124,Foster City,San Jose
+807,634,Foster City,San Jose
+807,347,Foster City,San Jose
+807,38,Foster City,San Jose
+807,460,Foster City,San Jose
+807,288,Foster City,San Jose
+807,558,Foster City,San Jose
+807,591,Foster City,San Jose
+807,255,Foster City,San Jose
+807,294,Foster City,Palo Alto
+807,366,Foster City,Santa Clara
+807,301,Foster City,Santa Clara
+807,2096,Foster City,Santa Clara
+807,278,Foster City,Mountain View
+807,35,Foster City,Mountain View
+807,276,Foster City,Sunnyvale
+807,749,Foster City,Sunnyvale
+807,382,Foster City,Sunnyvale
+807,206,Foster City,Redwood City
+807,279,Foster City,San Mateo
+807,799,Foster City,San Mateo
+807,763,Foster City,Menlo Park
+807,1061,Foster City,Menlo Park
+807,332,Foster City,San Bruno
+807,736,Foster City,Fremont
+807,1147,Foster City,Fremont
+807,1284,Foster City,Fremont
+807,44,Foster City,Fremont
+807,1285,Foster City,Fremont
+807,759,Foster City,Fremont
+807,252,Foster City,Milpitas
+807,653,Foster City,Milpitas
+807,412,Foster City,Milpitas
+807,411,Foster City,Milpitas
+807,797,Foster City,Foster City
+339,807,Nicasio,Foster City
+800,206,Hayward,Redwood City
+800,279,Hayward,San Mateo
+800,799,Hayward,San Mateo
+800,332,Hayward,San Bruno
+800,807,Hayward,Foster City
+800,797,Hayward,Foster City
+945,807,Los Altos,Foster City
+35,807,Mountain View,Foster City
+332,812,San Bruno,San Jose

@@ -4,6 +4,7 @@ import java.io.IOException;
 import me.bhattsachin.fiveoneone.traffic.model.destination.Destinations;
 import me.bhattsachin.fiveoneone.traffic.model.origin.Origins;
 import me.bhattsachin.fiveoneone.traffic.model.path.Paths;
+import me.bhattsachin.fiveoneone.traffic.util.TrafficFileWriter;
 import me.bhattsachin.fiveoneone.traffic.util.WebResponseHandler;
 
 import org.apache.http.HttpEntity;
@@ -78,6 +79,7 @@ public class WebClient {
 	        try {
 	        	String url = "http://services.my511.org/traffic/getpathlist.aspx?token=33f74986-ede3-4e51-9755-05eb1486e4f7&o=" + origin + "&d=" + destination;
 	        	//System.out.println(url);
+	        	TrafficFileWriter.append(TrafficFileWriter.FILE_TYPES.URL.name(), url);
 	            HttpGet httpget = new HttpGet(url);
 	           
 	           response = httpclient.execute(httpget, new WebResponseHandler<Paths>(Paths.class)); 

@@ -34,15 +34,17 @@ public class WebResponseHandler<T> implements ResponseHandler<T>{
 	public T handleResponse(
              final HttpResponse response) throws ClientProtocolException, IOException {
          int status = response.getStatusLine().getStatusCode();
+         String responseText = null;
          if (status >= 200 && status < 300) {
         	 try{
         	context = JAXBContext.newInstance(this.type);
      		unmarshaller = this.context.createUnmarshaller();
         	 HttpEntity entity = response.getEntity();
-        	 String responseText = EntityUtils.toString(entity);
+        	 responseText = EntityUtils.toString(entity);
         	 StringReader reader = new StringReader(responseText);
              return (T)unmarshaller.unmarshal(reader);
         	 }catch(Exception ex){
+        		 TrafficFileWriter.append(TrafficFileWriter.FILE_TYPES.EXCEPTION.name(), responseText);
         		 System.out.println(ex);
         		 return null;
         	 }

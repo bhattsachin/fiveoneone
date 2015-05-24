@@ -24,7 +24,7 @@ public class CityNodeUtil {
 		if(!cityMap.containsKey(node)){
 			System.out.println("adding node" + node + " ,  " + city);
 			cityMap.put(node, city);
-			
+			TrafficFileWriter.append(TrafficFileWriter.FILE_TYPES.CITY.name(), city  + "," + node);
 		}
 		
 	}
