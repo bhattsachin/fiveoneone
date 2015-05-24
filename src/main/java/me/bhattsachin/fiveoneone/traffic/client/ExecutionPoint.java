@@ -138,6 +138,12 @@ public class ExecutionPoint extends WebClient {
 						
 						
 						
+						/**
+						 * if the node is dead don't go through
+						 */
+						if(DeadNodeUtil.isDead(jobCityNode, homecode)){
+							continue;
+						}
 						
 						
 						/**
