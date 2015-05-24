@@ -16,7 +16,7 @@ public class TrafficFileWriter {
 	
 	public static enum FILE_TYPES{
 		
-		NO_PATH, PATH, JOBS, CITY, EXCEPTION, URL
+		NO_PATH, PATH, JOBS, CITY, EXCEPTION, URL, JOB_EXCEPTION, JOB_DETAILS
 	}
 
 	public static void append(String fileName, String text){

@@ -33,14 +33,14 @@ public class WebClient {
 	            HttpGet httpget = new HttpGet("http://services.my511.org/traffic/getoriginlist.aspx?token=33f74986-ede3-4e51-9755-05eb1486e4f7");
 	           
 	           response = httpclient.execute(httpget, new WebResponseHandler<Origins>(Origins.class)); 
-	            System.out.println("----------------------------------------");
+	           // System.out.println("----------------------------------------");
 	           if(response!=null){
 	        	   
 	        	   for(Origins.Origin destin : response.getDestination()){
-	        		   System.out.println(destin);
+	        		   //System.out.println(destin);
 	        		   
 	        	   }
-	        	   System.out.println("total of : " + response.getDestination().size());
+	        	  // System.out.println("total of : " + response.getDestination().size());
 	           }
 	        } finally {
 	            httpclient.close();
@@ -56,14 +56,14 @@ public class WebClient {
 	            HttpGet httpget = new HttpGet("http://services.my511.org/traffic/getdestinationlist.aspx?token=33f74986-ede3-4e51-9755-05eb1486e4f7&o=" + origin);
 	           
 	           response = httpclient.execute(httpget, new WebResponseHandler<Destinations>(Destinations.class)); 
-	            System.out.println("----------------------------------------");
+	           // System.out.println("----------------------------------------");
 	           if(response!=null){
 	        	   
 	        	   for(Destinations.Destination destin : response.getDestination()){
-	        		   System.out.println(destin);
+	        		 //  System.out.println(destin);
 	        		   
 	        	   }
-	        	   System.out.println("total of : " + response.getDestination().size());
+	        	   //System.out.println("total of : " + response.getDestination().size());
 	           }
 	        } finally {
 	            httpclient.close();
@@ -111,7 +111,7 @@ public class WebClient {
         try {
             HttpGet httpget = new HttpGet("http://www.google.com/");
 
-            System.out.println("Executing request " + httpget.getRequestLine());
+           // System.out.println("Executing request " + httpget.getRequestLine());
 
             // Create a custom response handler
             ResponseHandler<String> responseHandler = new ResponseHandler<String>() {

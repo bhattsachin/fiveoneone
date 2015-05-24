@@ -21,7 +21,7 @@ public class QuartzEntryPoint {
 				.withIdentity("dummyTriggerName", "group1")
 				.withSchedule(
 				    SimpleScheduleBuilder.simpleSchedule()
-					.withIntervalInSeconds(5).repeatForever())
+					.withIntervalInSeconds(8*60).repeatForever())
 				.build();
 		
 		

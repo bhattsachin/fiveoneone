@@ -20,6 +20,8 @@ import org.apache.http.client.ClientProtocolException;
 public class ExecutionPoint extends WebClient {
 	
 	static SimpleDateFormat folderFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+	static Origins origins=null;
+	public static long jobCount = 0;
 
 	public static void main(String[] args) throws ClientProtocolException,
 			IOException {
@@ -32,7 +34,7 @@ public class ExecutionPoint extends WebClient {
 
 
 
-	private static void execute() throws ClientProtocolException, IOException {
+	public static void execute() throws ClientProtocolException, IOException {
 		long seed = System.currentTimeMillis();
 		Date date = new Date(System.currentTimeMillis());
 		String timeStamp = folderFormat.format(date);
@@ -42,8 +44,10 @@ public class ExecutionPoint extends WebClient {
 		/**
 		 * 1. find all origin nodes and cities
 		 */
-		Origins origins = thread.fetchOrigin();
-		populateCity(origins);
+		if(origins==null){
+			origins = thread.fetchOrigin();
+			populateCity(origins);
+		}
 
 		/**
 		 * 2. find nodes for all job cities
@@ -57,6 +61,8 @@ public class ExecutionPoint extends WebClient {
 		 * This is a bidirectional graph so we need to count them both ways.
 		 */
 		thread.populateAllPaths();
+		TrafficFileWriter.append(TrafficFileWriter.FILE_TYPES.JOB_DETAILS.name(), TrafficFileWriter.TIMESTAMP + ":" + ((System.currentTimeMillis()-seed))/1000);
+		//System.out.println("total time:" + ((System.currentTimeMillis()-seed))/1000 + " seconds");
 	}
 	
 	
@@ -89,7 +95,7 @@ public class ExecutionPoint extends WebClient {
 			
 			coveredCity.add(homeCity);
 			
-			System.out.println("homecity" + homeCity);
+			//System.out.println("homecity" + homeCity);
 			
 			for (City city : JobCityUtil.getCities()) {
 				for (String jobCityNode : city.getNode()) {
@@ -123,12 +129,40 @@ public class ExecutionPoint extends WebClient {
 							TrafficFileWriter.append(TrafficFileWriter.FILE_TYPES.PATH.name(), traveltime.compressedValue());
 						} else {
 							TrafficFileWriter.append(TrafficFileWriter.FILE_TYPES.NO_PATH.name(), homecode + "," + jobCityNode + "," + homeCity + "," + city.getCity());
-							System.out.println(CityNodeUtil.getCity(homecode)
+							/*System.out.println(CityNodeUtil.getCity(homecode)
 									+ "->" + city.getCity() + " no path found"
-									+ paths);
+									+ paths);*/
 							//System.out.println(homecode + "," + jobCityNode);
 							continue;
 						}
+						
+						
+						
+						
+						
+						/**
+						 * reverse route
+						 */
+						paths = fetchPath(jobCityNode, homecode);
+
+						if (paths != null && paths.getPath() != null
+								&& !paths.getPath().isEmpty()
+								&& paths.getPath().size() > 0) {
+							
+							traveltime = new TravelTime(jobCityNode, homecode, paths, new Date());
+
+							//System.out.println(traveltime.compressedValue());
+							TrafficFileWriter.append(TrafficFileWriter.FILE_TYPES.PATH.name(), traveltime.compressedValue());
+						} else {
+							TrafficFileWriter.append(TrafficFileWriter.FILE_TYPES.NO_PATH.name(), jobCityNode + "," + homecode + "," + city.getCity() + "," + homeCity);
+							/*System.out.println(CityNodeUtil.getCity(homecode)
+									+ "->" + city.getCity() + " no path found"
+									+ paths);*/
+							//System.out.println(homecode + "," + jobCityNode);
+							continue;
+						}
+						
+						
 						
 						/**
 						 * running this only one time: one city can have multiple nodes
@@ -143,8 +177,6 @@ public class ExecutionPoint extends WebClient {
 						TrafficFileWriter.append(TrafficFileWriter.FILE_TYPES.EXCEPTION.name(), homecode + "," + jobCityNode + "," + homeCity + "," + city.getCity());
 						ex.printStackTrace();
 					}
-
-					
 
 				}
 
@@ -173,7 +205,7 @@ public class ExecutionPoint extends WebClient {
 
 	private static void printJobCityNodes() {
 		for (City city : JobCityUtil.getCities()) {
-			System.out.println(city);
+			//System.out.println(city);
 		}
 	}
 
